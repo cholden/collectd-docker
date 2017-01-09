@@ -1,0 +1,2 @@
+#!/bin/bash
+docker ps | awk '$2 == "collectd-docker" {print $1}' | xargs docker kill

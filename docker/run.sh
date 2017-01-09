@@ -13,7 +13,7 @@ export GRAPHITE_PREFIX=${GRAPHITE_PREFIX:-collectd.}
 export COLLECTD_INTERVAL=${COLLECTD_INTERVAL:-10}
 
 # Adding a user if needed to be able to communicate with docker
-GROUP=nobody
+GROUP=root
 if [ -e /var/run/docker.sock ]; then
   GROUP=$(ls -l /var/run/docker.sock | awk '{ print $4 }')
 
@@ -32,4 +32,4 @@ if [ ! $(getent passwd "collectd-docker-collector") ]; then
 fi
 
 exec reefer -t /etc/collectd/collectd.conf.tpl:/tmp/collectd.conf -E \
-  collectd -f -C /tmp/collectd.conf "$@" > /dev/null
+  collectd -f -C /tmp/collectd.conf "$@" 

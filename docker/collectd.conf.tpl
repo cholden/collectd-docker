@@ -5,18 +5,11 @@ Interval {{ .Env "COLLECTD_INTERVAL" }}
 Timeout 2
 ReadThreads 5
 
-LoadPlugin write_graphite
-<Plugin "write_graphite">
-    <Carbon>
-        Host "{{ .Env "GRAPHITE_HOST" }}"
-        Port "{{ .Env "GRAPHITE_PORT" }}"
-        Protocol "tcp"
-        Prefix "{{ .Env "GRAPHITE_PREFIX" }}"
-        StoreRates true
-        EscapeCharacter "."
-        AlwaysAppendDS false
-        SeparateInstances true
-    </Carbon>
+LoadPlugin write_http
+<Plugin "write_http">
+    <URL "http://zendev:8090/v1/collectd">
+            Format "JSON"
+    </URL>
 </Plugin>
 
 LoadPlugin exec
