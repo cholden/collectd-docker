@@ -1,1 +1,1 @@
-docker run -v /var/run/docker.sock:/var/run/docker.sock --add-host="zendev:10.87.130.11" -e COLLECTD_INTERVAL=30 -d collectd-docker
+docker run -v /var/run/docker.sock:/var/run/docker.sock --add-host="zendev:52.45.60.150" -e COLLECTD_INTERVAL=30 -d collectd-docker
